@@ -1,0 +1,227 @@
+//Check if Every Row and Column Contains All Numbers
+class Solution {
+    public boolean checkValid(int[][] matrix) {
+         int n = matrix.length; // number of rows (and columns since it's an n x n matrix)
+        
+        for (int i = 0; i < n; i++) {
+            boolean[] rowCheck = new boolean[n + 1];
+            boolean[] colCheck = new boolean[n + 1];
+            
+            for (int j = 0; j < n; j++) {
+                if (matrix[i][j] <= 0 || matrix[i][j] > n || rowCheck[matrix[i][j]]) {
+                    return false;
+                }
+                if (matrix[j][i] <= 0 || matrix[j][i] > n || colCheck[matrix[j][i]]) {
+                    return false;
+                }
+                rowCheck[matrix[i][j]] = true;
+                colCheck[matrix[j][i]] = true;
+            }
+        }
+        
+        return true;
+    }
+}
+
+
+//Fizz Buzz
+class Solution {
+    public List<String> fizzBuzz(int n) {
+        List<String>result=new ArrayList<String>();
+
+        for(int i=1;i<=n;i++){
+            if(i%3==0 && i%5==0){
+               result.add("FizzBuzz");
+            }
+            else if(i%3==0){
+                result.add("Fizz");
+            }
+            else if(i%5==0){
+                result.add("Buzz");
+            }
+            else 
+                result.add(String.valueOf(i)); 
+            
+        }
+        return result;
+    }
+}
+
+//To Lower Case
+class Solution {
+    public String toLowerCase(String s) {
+        return s.toLowerCase();
+    }
+}
+
+//Contains Duplicate
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        for (int i = 1; i < n; i++) {
+            if (nums[i] == nums[i - 1])
+                return true;
+        }
+        return false;
+    }
+}
+
+
+//Plus One
+class Solution {
+    public int[] plusOne(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+	        if (digits[i] < 9) {
+		        digits[i]++;
+		        return digits;
+	        }
+	        digits[i] = 0;
+      }
+
+      digits = new int[digits.length + 1];
+       digits[0] = 1;
+       return digits;
+    }
+}
+
+//Remove Element
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int c=0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i]!=val) {
+                nums[c++]=nums[i];
+            }
+        }
+        return c;
+     }
+}
+
+//Number of Employees Who Met the Target
+class Solution {
+    public int numberOfEmployeesWhoMetTarget(int[] hours, int target) {
+        int count=0;
+        for(var i:hours){
+            if(i>=target)
+               count++;
+        }
+        return count;
+    }
+}
+
+//Remove Duplicates from Sorted Array
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int i=0;
+        for(int j=1;j<nums.length;j++){
+            if(nums[i]!=nums[j]){
+                i++;
+                nums[i]=nums[j];
+            }
+        }
+        return i+1;
+    }
+}
+
+//Final Value of Variable After Performing Operations
+class Solution {
+   public int finalValueAfterOperations(String[] oper) {
+       
+
+        int plus=0,minus=0;
+
+        for(String x:oper){
+            if( x.equals("X--")|| x.equals("--X"))minus++;
+             if(x.equals("X++")|| x.equals("++X"))plus++;
+        }
+ 
+        return plus-minus;
+    }
+}
+
+//Check If Two String Arrays are Equivalent
+class Solution {
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+         StringBuilder stringword1=new StringBuilder();
+         StringBuilder stringword2=new StringBuilder();
+         for(String str:word1){
+            stringword1.append(str);
+         }
+         for(String str:word2){
+            stringword2.append(str);
+         }
+
+         return stringword1.toString().equals(stringword2.toString());
+
+    }
+}
+
+//Build Array from Permutation
+class Solution {
+    public int[] buildArray(int[] nums) {
+        int[]ans=new int[nums.length];
+        for(int i=0;i<nums.length;i++){
+            ans[i]=nums[nums[i]];
+        }
+        return ans;
+    }
+}
+
+//Concatenation of Array
+class Solution {
+    public int[] getConcatenation(int[] nums) {
+        int[] ans = new int[nums.length*2];  
+        for(int i=nums.length;i<ans.length;i++){   
+             ans[i-nums.length] = nums[i-nums.length];   
+             ans[i] = nums[i-nums.length];   
+        }
+        return ans;   
+    }
+}
+
+//Find Common Elements Between Two Arrays
+class Solution {
+    public int[] findIntersectionValues(int[] nums1, int[] nums2) {
+        int count=0;
+        int ans[]=new int[2];
+        for(int i=0;i<nums1.length;i++)
+        {
+            for(int j=0;j<nums2.length;j++)
+            {
+                if(nums1[i]==nums2[j])
+                {
+                    count++;
+                    break;
+                }
+            }
+        }
+        
+        ans[0]=count;
+        count=0;
+        for(int i=0;i<nums2.length;i++)
+        {
+            for(int j=0;j<nums1.length;j++)
+            {
+                if(nums1[j]==nums2[i])
+                {
+                    count++;
+                    break;
+                }
+            }
+        }
+        ans[1]=count;
+        return ans;
+    }
+}
+
+//Running Sum of 1d Array
+class Solution {
+    public int[] runningSum(int[] nums) {
+    
+        for(int i=1;i<nums.length;i++){
+            nums[i]=nums[i-1]+nums[i];
+        }
+        return nums;
+    }
+}
